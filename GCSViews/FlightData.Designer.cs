@@ -660,25 +660,27 @@ namespace MissionPlanner.GCSViews
             // 
             // contextMenuStripQuickView
             // 
-            // @vah_13 START
-            /*this.contextMenuStripQuickView.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            
+            this.contextMenuStripQuickView.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.setViewCountToolStripMenuItem,
             this.undockToolStripMenuItem});
             this.contextMenuStripQuickView.Name = "contextMenuStripQuickView";
-            resources.ApplyResources(this.contextMenuStripQuickView, "contextMenuStripQuickView");*/
+            // @vah_13 STARTresources.ApplyResources(this.contextMenuStripQuickView, "contextMenuStripQuickView");
             // 
             // setViewCountToolStripMenuItem
             // 
             
-/*          this.setViewCountToolStripMenuItem.Name = "setViewCountToolStripMenuItem";
+            this.setViewCountToolStripMenuItem.Name = "setViewCountToolStripMenuItem";
             resources.ApplyResources(this.setViewCountToolStripMenuItem, "setViewCountToolStripMenuItem");
-            this.setViewCountToolStripMenuItem.Click += new System.EventHandler(this.setViewCountToolStripMenuItem_Click);
+            // @vah_13 START
+            // this.setViewCountToolStripMenuItem.Click += new System.EventHandler(this.setViewCountToolStripMenuItem_Click);
             // 
             // undockToolStripMenuItem
             // 
             this.undockToolStripMenuItem.Name = "undockToolStripMenuItem";
             resources.ApplyResources(this.undockToolStripMenuItem, "undockToolStripMenuItem");
-            this.undockToolStripMenuItem.Click += new System.EventHandler(this.undockDockToolStripMenuItem_Click);*/
+            // @vah_13 START
+            // this.undockToolStripMenuItem.Click += new System.EventHandler(this.undockDockToolStripMenuItem_Click);
             // @vah_13 END
             // 
             // bindingSourceQuickTab

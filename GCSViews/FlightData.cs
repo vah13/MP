@@ -3152,7 +3152,7 @@ namespace MissionPlanner.GCSViews
             int max_length = 0;
             List<(string name, string desc)> fields = new List<(string, string)>();
 
-            foreach (var field in test.GetProperties())
+            foreach (var fieldName in fieldWhitelist)
             {
                 // field.Name has the field's name.
                 object fieldValue = field.GetValue(thisBoxed, null); // Get value

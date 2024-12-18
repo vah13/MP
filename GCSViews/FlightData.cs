@@ -5014,12 +5014,12 @@ namespace MissionPlanner.GCSViews
 
         private void setViewCountToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            string cols = "2", rows = "3";
+            string cols = "3", rows = "3";
 
             if (Settings.Instance["quickViewRows"] != null)
             {
-                rows = Settings.Instance["quickViewRows"];
-                cols = Settings.Instance["quickViewCols"];
+                rows = "3";
+                cols = "3";
             }
 
             if (InputBox.Show("Columns", "Enter number of columns to have.", ref cols) == DialogResult.OK)

@@ -42,14 +42,15 @@ namespace Shortcuts
 
         public override bool Loaded()
         {
-            but = new ToolStripMenuItem("Fix mission top/bottom");
+         /*   but = new ToolStripMenuItem("Fix mission top/bottom");
+         
             but.Click += but_Click;
             ToolStripItemCollection col = Host.FPMenuMap.Items;
             col.Add(but);
             commands =
                 Host.MainForm.FlightPlanner.Controls.Find("Commands", true).FirstOrDefault() as
                     MissionPlanner.Controls.MyDataGridView;
-            return true;
+         */   return true;
         }
 
         public override bool Loop()

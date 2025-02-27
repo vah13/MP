@@ -1,4 +1,5 @@
-﻿using System.Windows.Forms;
+﻿using MissionPlanner.Utilities;
+using System.Windows.Forms;
 
 namespace MissionPlanner.GCSViews
 {
@@ -458,11 +459,12 @@ namespace MissionPlanner.GCSViews
             // contextMenuStripHud
             // 
             this.contextMenuStripHud.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.russianHudToolStripMenuItem
             // @vah_13 START
             // this.videoToolStripMenuItem,
             /*this.setAspectRatioToolStripMenuItem,
             this.userItemsToolStripMenuItem,
-            this.russianHudToolStripMenuItem,
+            
             this.swapWithMapToolStripMenuItem,
             this.groundColorToolStripMenuItem,
             this.setBatteryCellCountToolStripMenuItem,
@@ -547,6 +549,8 @@ namespace MissionPlanner.GCSViews
             // 
             this.russianHudToolStripMenuItem.Name = "russianHudToolStripMenuItem";
             resources.ApplyResources(this.russianHudToolStripMenuItem, "russianHudToolStripMenuItem");
+            hud1.Russian = !hud1.Russian;
+            Settings.Instance["russian_hud"] = hud1.Russian.ToString();
             this.russianHudToolStripMenuItem.Click += new System.EventHandler(this.russianHudToolStripMenuItem_Click);
             // 
             // swapWithMapToolStripMenuItem
@@ -585,9 +589,9 @@ namespace MissionPlanner.GCSViews
             this.tabControlactions.Controls.Add(this.tabActions);
             this.tabControlactions.Controls.Add(this.tabPagemessages);
             this.tabControlactions.Controls.Add(this.tabActionsSimple);
-            this.tabControlactions.Controls.Add(this.tabPagePreFlight);
+            //this.tabControlactions.Controls.Add(this.tabPagePreFlight);
             this.tabControlactions.Controls.Add(this.tabStatus);
-            this.tabControlactions.Controls.Add(this.tabServo);
+            //this.tabControlactions.Controls.Add(this.tabServo);
             // @vah_13 START
             // this.tabControlactions.Controls.Add(this.tabGauges);
             // this.tabControlactions.Controls.Add(this.tabTransponder);
@@ -673,7 +677,7 @@ namespace MissionPlanner.GCSViews
             this.setViewCountToolStripMenuItem.Name = "setViewCountToolStripMenuItem";
             resources.ApplyResources(this.setViewCountToolStripMenuItem, "setViewCountToolStripMenuItem");
             // @vah_13 START
-            // this.setViewCountToolStripMenuItem.Click += new System.EventHandler(this.setViewCountToolStripMenuItem_Click);
+            this.setViewCountToolStripMenuItem.Click += new System.EventHandler(this.setViewCountToolStripMenuItem_Click);
             // 
             // undockToolStripMenuItem
             // 
@@ -809,6 +813,7 @@ namespace MissionPlanner.GCSViews
             this.toolTip1.SetToolTip(this.BUT_abortland, resources.GetString("BUT_abortland.ToolTip"));
             this.BUT_abortland.UseVisualStyleBackColor = true;
             this.BUT_abortland.Click += new System.EventHandler(this.BUT_abortland_Click);
+            this.BUT_abortland.Enabled = false;
             // 
             // modifyandSetLoiterRad
             // 
@@ -821,18 +826,18 @@ namespace MissionPlanner.GCSViews
             0,
             0});
             this.modifyandSetLoiterRad.Maximum = new decimal(new int[] {
-            10000,
+            250,
             0,
             0,
             0});
             this.modifyandSetLoiterRad.Minimum = new decimal(new int[] {
-            10000,
+            50,
             0,
             0,
-            -2147483648});
+            0});
             this.modifyandSetLoiterRad.Name = "modifyandSetLoiterRad";
             this.modifyandSetLoiterRad.Value = new decimal(new int[] {
-            100,
+            50,
             0,
             0,
             0});
@@ -848,6 +853,7 @@ namespace MissionPlanner.GCSViews
             this.toolTip1.SetToolTip(this.BUT_clear_track, resources.GetString("BUT_clear_track.ToolTip"));
             this.BUT_clear_track.UseVisualStyleBackColor = true;
             this.BUT_clear_track.Click += new System.EventHandler(this.BUT_clear_track_Click);
+            this.BUT_clear_track.Enabled = false;
             // 
             // CMB_action
             // 
@@ -877,6 +883,7 @@ namespace MissionPlanner.GCSViews
             this.BUT_resumemis.Name = "BUT_resumemis";
             this.BUT_resumemis.UseVisualStyleBackColor = true;
             this.BUT_resumemis.Click += new System.EventHandler(this.BUT_resumemis_Click);
+            this.BUT_resumemis.Enabled = false;
             // 
             // modifyandSetAlt
             // 
@@ -889,18 +896,18 @@ namespace MissionPlanner.GCSViews
             0,
             0});
             this.modifyandSetAlt.Maximum = new decimal(new int[] {
-            10000,
+            2000,
             0,
             0,
             0});
             this.modifyandSetAlt.Minimum = new decimal(new int[] {
-            0,
+            20,
             0,
             0,
             0});
             this.modifyandSetAlt.Name = "modifyandSetAlt";
             this.modifyandSetAlt.Value = new decimal(new int[] {
-            100,
+            20,
             0,
             0,
             0});
@@ -917,18 +924,18 @@ namespace MissionPlanner.GCSViews
             0,
             0});
             this.modifyandSetSpeed.Maximum = new decimal(new int[] {
-            1000,
+            20,
             0,
             0,
             0});
             this.modifyandSetSpeed.Minimum = new decimal(new int[] {
-            0,
+            18,
             0,
             0,
             0});
             this.modifyandSetSpeed.Name = "modifyandSetSpeed";
             this.modifyandSetSpeed.Value = new decimal(new int[] {
-            100,
+            18,
             0,
             0,
             0});
@@ -967,6 +974,7 @@ namespace MissionPlanner.GCSViews
             this.toolTip1.SetToolTip(this.BUT_mountmode, resources.GetString("BUT_mountmode.ToolTip"));
             this.BUT_mountmode.UseVisualStyleBackColor = true;
             this.BUT_mountmode.Click += new System.EventHandler(this.BUT_mountmode_Click);
+            this.BUT_mountmode.Enabled = false;
             // 
             // BUT_joystick
             // 
@@ -999,6 +1007,7 @@ namespace MissionPlanner.GCSViews
             this.BUT_Homealt.Name = "BUT_Homealt";
             this.toolTip1.SetToolTip(this.BUT_Homealt, resources.GetString("BUT_Homealt.ToolTip"));
             this.BUT_Homealt.UseVisualStyleBackColor = true;
+            this.BUT_Homealt.Enabled = false;
             this.BUT_Homealt.Click += new System.EventHandler(this.BUT_Homealt_Click);
             // 
             // BUTrestartmission
@@ -2523,6 +2532,7 @@ namespace MissionPlanner.GCSViews
             this.flyToCoordsToolStripMenuItem.Name = "flyToCoordsToolStripMenuItem";
             resources.ApplyResources(this.flyToCoordsToolStripMenuItem, "flyToCoordsToolStripMenuItem");
             this.flyToCoordsToolStripMenuItem.Click += new System.EventHandler(this.flyToCoordsToolStripMenuItem_Click);
+            this.flyToCoordsToolStripMenuItem.Enabled = false;
             // 
             // addPoiToolStripMenuItem
             // 
@@ -2620,6 +2630,7 @@ namespace MissionPlanner.GCSViews
             this.setEKFHomeHereToolStripMenuItem.Name = "setEKFHomeHereToolStripMenuItem";
             resources.ApplyResources(this.setEKFHomeHereToolStripMenuItem, "setEKFHomeHereToolStripMenuItem");
             this.setEKFHomeHereToolStripMenuItem.Click += new System.EventHandler(this.setEKFHomeHereToolStripMenuItem_Click);
+            this.setEKFHomeHereToolStripMenuItem.Enabled = false;
             // 
             // setHomeHereToolStripMenuItem1
             // 

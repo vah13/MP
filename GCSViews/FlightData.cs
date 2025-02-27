@@ -192,10 +192,7 @@ namespace MissionPlanner.GCSViews
             Scripting_cmd_stop,
             HighLatency_Enable,
             HighLatency_Disable,
-            Toggle_Safety_Switch,
-            Do_Parachute,
-            Engine_Start,
-            Engine_Stop,
+            Toggle_Safety_Switch
         }
 
         private Dictionary<int, string> NIC_table = new Dictionary<int, string>()
@@ -454,7 +451,7 @@ namespace MissionPlanner.GCSViews
             if (Settings.Instance.ContainsKey("quickViewRows"))
             {
                 // @vah_13 patch start
-                setQuickViewRowsCols("3", "3");
+                setQuickViewRowsCols(Settings.Instance["quickViewCols"], Settings.Instance["quickViewRows"]);
                 // @vah_13 patch end
             }
 
@@ -1781,18 +1778,6 @@ namespace MissionPlanner.GCSViews
                         var custom_mode = (MainV2.comPort.MAV.cs.sensors_enabled.motor_control && MainV2.comPort.MAV.cs.sensors_enabled.seen) ? 1u : 0u;
                         var mode = new MAVLink.mavlink_set_mode_t() { custom_mode = custom_mode, target_system = target_system };
                         MainV2.comPort.setMode(mode, MAVLink.MAV_MODE_FLAG.SAFETY_ARMED);
-                        ((Control)sender).Enabled = true;
-                        return;
-                    }
-                    if (CMB_action.Text == actions.Engine_Start.ToString())
-                    {
-                        MainV2.comPort.doEngineControl((byte)MainV2.comPort.sysidcurrent, (byte)MainV2.comPort.compidcurrent, true);
-                        ((Control)sender).Enabled = true;
-                        return;
-                    }
-                    if (CMB_action.Text == actions.Engine_Stop.ToString())
-                    {
-                        MainV2.comPort.doEngineControl((byte)MainV2.comPort.sysidcurrent, (byte)MainV2.comPort.compidcurrent, false);
                         ((Control)sender).Enabled = true;
                         return;
                     }
@@ -4669,8 +4654,8 @@ namespace MissionPlanner.GCSViews
 
         private void russianHudToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            hud1.Russian = !hud1.Russian;
-            Settings.Instance["russian_hud"] = hud1.Russian.ToString();
+            //hud1.Russian = !hud1.Russian;
+            //Settings.Instance["russian_hud"] = hud1.Russian.ToString();
         }
 
         private void saveFileToolStripMenuItem_Click(object sender, EventArgs e)
@@ -5014,12 +4999,12 @@ namespace MissionPlanner.GCSViews
 
         private void setViewCountToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            string cols = "3", rows = "3";
+            string cols = "2", rows = "3";
 
             if (Settings.Instance["quickViewRows"] != null)
             {
-                rows = "3";
-                cols = "3";
+                rows = Settings.Instance["quickViewRows"];
+                cols = Settings.Instance["quickViewCols"];
             }
 
             if (InputBox.Show("Columns", "Enter number of columns to have.", ref cols) == DialogResult.OK)

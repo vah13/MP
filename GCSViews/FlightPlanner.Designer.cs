@@ -1,5 +1,6 @@
 ﻿using System.Windows.Forms;
 using MissionPlanner.Controls;
+using MissionPlanner.Utilities;
 
 namespace MissionPlanner.GCSViews
 {
@@ -897,27 +898,27 @@ namespace MissionPlanner.GCSViews
             // contextMenuStrip1
             // 
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.deleteWPToolStripMenuItem,
-            this.insertWpToolStripMenuItem,
-            this.insertSplineWPToolStripMenuItem,
-            this.loiterToolStripMenuItem,
-            this.jumpToolStripMenuItem,
-            this.rTLToolStripMenuItem,
-            this.landToolStripMenuItem,
+            //this.deleteWPToolStripMenuItem,
+            //this.insertWpToolStripMenuItem,
+            //this.insertSplineWPToolStripMenuItem,
+            //this.loiterToolStripMenuItem,
+            //this.jumpToolStripMenuItem,
+            //this.rTLToolStripMenuItem,
+            //this.landToolStripMenuItem,
             this.takeoffToolStripMenuItem,
-            this.setROIToolStripMenuItem,
+            //this.setROIToolStripMenuItem,
             this.clearMissionToolStripMenuItem,
             this.toolStripSeparator1,
-            this.polygonToolStripMenuItem,
-            this.geoFenceToolStripMenuItem,
-            this.rallyPointsToolStripMenuItem,
+            //this.polygonToolStripMenuItem,
+            //this.geoFenceToolStripMenuItem,
+            //this.rallyPointsToolStripMenuItem,
             this.autoWPToolStripMenuItem,
             this.mapToolToolStripMenuItem,
-            this.fileLoadSaveToolStripMenuItem,
-            this.pOIToolStripMenuItem,
-            this.trackerHomeToolStripMenuItem,
-            this.modifyAltToolStripMenuItem,
-            this.enterUTMCoordToolStripMenuItem,
+            //this.fileLoadSaveToolStripMenuItem,
+            //this.pOIToolStripMenuItem,
+            //this.trackerHomeToolStripMenuItem,
+            //this.modifyAltToolStripMenuItem,
+            //this.enterUTMCoordToolStripMenuItem,
             this.switchDockingToolStripMenuItem,
             this.setHomeHereToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";

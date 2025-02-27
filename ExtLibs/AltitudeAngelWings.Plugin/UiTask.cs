@@ -15,41 +15,6 @@ namespace AltitudeAngelWings.Plugin
         private static readonly TimeSpan TaskCheckInterval = TimeSpan.FromMilliseconds(100);
         private static readonly TimeSpan WaitToShowTime = TimeSpan.FromMilliseconds(200);
 
-        public static T ShowDialog<T>(Func<CancellationToken, Task<T>> runTask, string description)
-        {
-            T result = default;
-            using (var form = new Form())
-            {
-                ThemeManager.ApplyThemeTo(form);
-                form.Width = 450;
-                form.Height = 300;
-                form.MinimizeBox = false;
-                form.MaximizeBox = false;
-                form.ShowInTaskbar = true;
-                form.Icon = Resources.AAIconBlack;
-                form.Text = Resources.WaitWindowTitle;
-                form.FormBorderStyle = FormBorderStyle.None;
-                form.Load += (sender, args) =>
-                {
-                    if (!(sender is Form frm)) return;
-                    if (frm?.Owner != null)
-                    {
-                        frm.Location = new Point(
-                            frm.Owner.Location.X + frm.Owner.Width / 2 - frm.Width / 2,
-                            frm.Owner.Location.Y + frm.Owner.Height / 2 - frm.Height / 2);
-                    }
-                };
-                form.Shown += (sender, args) =>
-                {
-                    if (!(sender is Form frm)) return;
-                    result = ShowWaitPanel(frm, runTask, description, false);
-                };
-                form.ShowDialog(MainV2.instance);
-            }
-
-            return result;
-        }
-
 
         public static T ShowWaitPanel<T>(Control parentControl, Func<CancellationToken, Task<T>> runTask, string description, bool waitToShow = true)
         {

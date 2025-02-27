@@ -459,11 +459,12 @@ namespace MissionPlanner.GCSViews
             // contextMenuStripHud
             // 
             this.contextMenuStripHud.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.russianHudToolStripMenuItem
+            this.russianHudToolStripMenuItem,
+            this.userItemsToolStripMenuItem
             // @vah_13 START
             // this.videoToolStripMenuItem,
             /*this.setAspectRatioToolStripMenuItem,
-            this.userItemsToolStripMenuItem,
+            ,
             
             this.swapWithMapToolStripMenuItem,
             this.groundColorToolStripMenuItem,
@@ -544,14 +545,18 @@ namespace MissionPlanner.GCSViews
             this.userItemsToolStripMenuItem.Name = "userItemsToolStripMenuItem";
             resources.ApplyResources(this.userItemsToolStripMenuItem, "userItemsToolStripMenuItem");
             this.userItemsToolStripMenuItem.Click += new System.EventHandler(this.hud_UserItem);
+            // vah13
+            this.contextMenuStripHud.Items.Add(this.userItemsToolStripMenuItem);
             // 
             // russianHudToolStripMenuItem
             // 
             this.russianHudToolStripMenuItem.Name = "russianHudToolStripMenuItem";
             resources.ApplyResources(this.russianHudToolStripMenuItem, "russianHudToolStripMenuItem");
-            hud1.Russian = !hud1.Russian;
+            // vah_13
+            hud1.Russian = true;
             Settings.Instance["russian_hud"] = hud1.Russian.ToString();
             this.russianHudToolStripMenuItem.Click += new System.EventHandler(this.russianHudToolStripMenuItem_Click);
+            this.russianHudToolStripMenuItem.Enabled = false;
             // 
             // swapWithMapToolStripMenuItem
             // 

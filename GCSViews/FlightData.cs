@@ -3131,9 +3131,15 @@ namespace MissionPlanner.GCSViews
                 MaximizeBox = false,
                 MinimizeBox = false,
                 AutoScroll = true
-
             };
             ThemeManager.ApplyThemeTo(selectform);
+
+            // Список полей, которые мы хотим показывать
+            var allowedFields = new HashSet<string>(StringComparer.OrdinalIgnoreCase)
+                {
+                    "DistToHome",
+                    "timeInAir"
+                };
 
             object thisBoxed = MainV2.comPort.MAV.cs;
             Type test = thisBoxed.GetType();
@@ -3143,14 +3149,19 @@ namespace MissionPlanner.GCSViews
 
             foreach (var field in test.GetProperties())
             {
-                // field.Name has the field's name.
+                // Проверяем, есть ли поле в списке разрешённых
+                if (!allowedFields.Contains(field.Name))
+                    continue;
+
                 object fieldValue = field.GetValue(thisBoxed, null); // Get value
                 if (fieldValue == null)
                     continue;
 
+                // Проверяем, является ли значение числом
                 if (!fieldValue.IsNumber())
                     continue;
 
+                // Если в названии есть "customfield"
                 if (field.Name.Contains("customfield"))
                 {
                     if (CurrentState.custom_field_names.ContainsKey(field.Name))
@@ -3168,13 +3179,16 @@ namespace MissionPlanner.GCSViews
             }
 
             max_length += 15;
+            // Сортируем поля (если нужно) по их "читаемому" названию
             fields.Sort((a, b) => CurrentState.StringCompareTo(a.Item2, b.Item2));
 
+            // Высчитываем количество столбцов и строк
             int col_count = (int)(Screen.FromControl(this).Bounds.Width * 0.8f) / max_length;
             int row_count = fields.Count / col_count + ((fields.Count % col_count == 0) ? 0 : 1);
             int row_height = 20;
-            //selectform.MinimumSize = new Size(col_count * max_length, row_count * row_height);
+
             selectform.SuspendLayout();
+
             for (int i = 0; i < fields.Count; i++)
             {
                 CheckBox chk_box = new CheckBox
@@ -3198,8 +3212,10 @@ namespace MissionPlanner.GCSViews
             {
                 selectform.Controls.ForEach(a =>
                 {
-                    if (a is CheckBox && ((CheckBox)a).Checked)
-                        ((CheckBox)a).BackColor = Color.Green;
+                    if (a is CheckBox chk && chk.Checked)
+                    {
+                        chk.BackColor = Color.Green;
+                    }
                 });
             };
 
@@ -4654,8 +4670,8 @@ namespace MissionPlanner.GCSViews
 
         private void russianHudToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //hud1.Russian = !hud1.Russian;
-            //Settings.Instance["russian_hud"] = hud1.Russian.ToString();
+            hud1.Russian = true;
+            Settings.Instance["russian_hud"] = hud1.Russian.ToString();
         }
 
         private void saveFileToolStripMenuItem_Click(object sender, EventArgs e)

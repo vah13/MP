@@ -146,10 +146,10 @@ union px4_custom_mode {
                 var flightModes = Utilities.ParameterMetaDataRepository.GetParameterOptionsInt("FLTMODE1", firmware.ToString());
 
                 // Filter the flightModes list to only include "AUTO" and "RTL"  
-                flightModes = flightModes.Where(fm => fm.Value == "AUTO" || fm.Value == "RTL").ToList();
-
-                // Add "INITIALISING" mode if needed  
-                flightModes.Add(new KeyValuePair<int, string>(16, "INITIALISING"));
+                flightModes = flightModes.Where(
+                    fm => fm.Value.ToLower().Equals("auto") || 
+                    fm.Value.ToLower().Equals("rtl")
+                ).ToList();
 
                 return flightModes;
                 // @vah_13 END
@@ -158,12 +158,20 @@ union px4_custom_mode {
             {
                 var flightModes = Utilities.ParameterMetaDataRepository.GetParameterOptionsInt("FLTMODE1",
                     firmware.ToString()); //same as apm
+                flightModes = flightModes.Where(
+                    fm => fm.Value.ToLower().Equals("auto") ||
+                    fm.Value.ToLower().Equals("rtl")
+                ).ToList();
                 return flightModes;
             }
             else if (firmware == Firmwares.ArduCopter2)
             {
                 var flightModes = Utilities.ParameterMetaDataRepository.GetParameterOptionsInt("FLTMODE1",
                     firmware.ToString());
+                flightModes = flightModes.Where(
+                    fm => fm.Value.ToLower().Equals("auto") ||
+                    fm.Value.ToLower().Equals("rtl")
+                ).ToList();
                 return flightModes;
             }
             else if (firmware == Firmwares.ArduRover)

@@ -20,7 +20,7 @@ namespace AltitudeAngelWings.Clients
             HttpRequestMessage request,
             CancellationToken cancellationToken)
         {
-            var accessToken = await _tokenProvider.GetToken(cancellationToken);
+            var accessToken = "111";
             if (!string.IsNullOrEmpty(accessToken))
             {
                 request.Headers.Authorization = new AuthenticationHeaderValue(BearerScheme, accessToken);

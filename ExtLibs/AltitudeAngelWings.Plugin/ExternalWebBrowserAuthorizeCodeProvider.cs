@@ -50,21 +50,7 @@ namespace AltitudeAngelWings.Plugin
                 return null;
             }
 
-            return await _uiThreadInvoke.Invoke(() => UiTask.ShowDialog(async cancellationToken =>
-                {
-                    var tokens = await _authClient.GetTokenFromClientCredentials(cancellationToken);
-                    Process.Start(authorizeUri.ToString());
-
-                    string code;
-                    do
-                    {
-                        await Task.Delay(TimeSpan.FromSeconds(1), cancellationToken);
-                        code = await _authClient.GetAuthorizationCode(tokens.AccessToken, _pollId, cancellationToken);
-                    } while (!cancellationToken.IsCancellationRequested && code == null);
-
-                    return code;
-                },
-                "Opening a browser to sign in to Altitude Angel. Please sign in using the browser."));
+            return null;
         }
     }
 }

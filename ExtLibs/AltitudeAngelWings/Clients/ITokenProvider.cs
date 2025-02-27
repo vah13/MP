@@ -5,6 +5,5 @@ namespace AltitudeAngelWings.Clients
 {
     public interface ITokenProvider
     {
-        Task<string> GetToken(CancellationToken cancellationToken);
     }
 }

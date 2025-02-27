@@ -96,8 +96,8 @@ namespace AltitudeAngelWings.Service
                 await _signInLock.WaitAsync(cancellationToken);
                 
                 // Attempt to get a token
-                var token = await _tokenProvider.GetToken(cancellationToken);
-                GC.KeepAlive(token);
+                //var token = await _tokenProvider.GetToken(cancellationToken);
+                //GC.KeepAlive(token);
             }
             catch (FlurlHttpException ex) when (ex.StatusCode == 401)
             {
